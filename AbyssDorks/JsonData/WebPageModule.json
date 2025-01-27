@@ -1,0 +1,158 @@
+{
+  "templates": [
+    {
+      "name": "Веб-сторінки PHP",
+      "description": "Пошук сторінок, які містять файли PHP.",
+      "template": "inurl:.php",
+      "hint": "Додайте домен або ключове слово для фільтрації.",
+      "tags": [ "web-pages" ]
+    },
+    {
+      "name": "Індексовані сторінки",
+      "description": "Пошук сторінок з відкритим індексом директорій.",
+      "template": "intitle:\"index of /\"",
+      "hint": "Додайте ключові слова (наприклад, backup).",
+      "tags": [ "web-pages", "files" ]
+    },
+    {
+      "name": "CMS Веб-сайти",
+      "description": "Пошук сайтів, які використовують CMS WordPress або Joomla.",
+      "template": "inurl:\"wp-content\" | inurl:\"joomla\"",
+      "hint": "Додайте домен або тип CMS для уточнення.",
+      "tags": [ "cms" ]
+    },
+    {
+      "name": "Попередні сторінки",
+      "description": "Пошук тестових або попередніх сторінок входу",
+      "template": "site:preprod.* * inurl:login",
+      "hint": "Замініть \"preprod.\" на специфічний домен або піддомен",
+      "tags": [ "login", "web-pages" ]
+    },
+    {
+      "name": "Сторінки з Reportico",
+      "description": "Пошук сайтів, що використовують Reportico для звітів",
+      "template": "intext:\"Reportico\" site:.com | site:.org | site:.net | site:.gov | site:.edu",
+      "hint": "Уточніть запит звітів або організацію",
+      "tags": ["web-pages"]
+    },
+    {
+      "name": "UAT сторінки",
+      "description": "Пошук тестових сторінок входу на UAT середовищах",
+      "template": "site:uat.* * inurl:login",
+      "hint": "Замініть \"uat.*\" на домени або платформи, які вас цікавлять",
+      "tags": [ "login", "web-pages" ]
+    },
+    {
+      "name": "Вразливі сторінки",
+      "description": "Пошук сторінок, вразливих до XSS.",
+      "template": "inurl:\"search.php?q=\" OR inurl:\"index.php?q=\"",
+      "hint": "Додайте фільтр за доменом або типом атаки.",
+      "tags": [ "vulnerabilities" ]
+    },
+    {
+      "name": "Сторінки з помилками",
+      "description": "Пошук сторінок з повідомленнями про помилки.",
+      "template": "intext:\"PHP Error\" OR \"Fatal error\"",
+      "hint": "Додайте версію PHP або додаткові ключові слова.",
+      "tags": [ "web-pages" ]
+    },
+    {
+      "name": "Адмін-панелі",
+      "description": "Пошук сторінок з адмін-панелями.",
+      "template": "inurl:admin OR intitle:admin",
+      "hint": "Додайте назву платформи (наприклад, WordPress).",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "Форми входу",
+      "description": "Пошук сторінок із формами входу.",
+      "template": "intitle:\"Login Page\" OR inurl:login",
+      "hint": "Додайте платформу або домен для фільтрації.",
+      "tags": [ "web-pages" ]
+    },
+    {
+      "name": "Веб-сторінки HTML",
+      "description": "Пошук HTML-сторінок, що можуть містити чутливі дані.",
+      "template": "filetype:html inurl:\"view\"",
+      "hint": "Додайте ключові слова для звуження пошуку.",
+      "tags": [ "web-pages" ]
+    },
+    {
+      "name": "Пошук коду",
+      "description": "Пошук сторінок з видимим сирцевим кодом.",
+      "template": "intitle:\"index of /\" \"*.php\" OR \"*.js\"",
+      "hint": "Додайте мову програмування (наприклад, Python).",
+      "tags": [ "files", "web-pages" ]
+    },
+    {
+      "name": "Вразливі параметри URL",
+      "description": "Пошук сторінок із параметрами, які можуть бути вразливими.",
+      "template": "inurl:\".php?id=\" OR inurl:\".asp?item=\"",
+      "hint": "Додайте конкретний домен для уточнення.",
+      "tags": [ "vulnerabilities" ]
+    },
+    {
+      "name": "Інтеграція API",
+      "description": "Пошук сторінок, що можуть містити API ключі.",
+      "template": "inurl:api OR intext:\"api_key\"",
+      "hint": "Додайте платформу (наприклад, AWS).",
+      "tags": [ "api" ]
+    },
+    {
+      "name": "Файли конфігурацій",
+      "description": "Пошук сторінок з відкритими конфігураційними файлами.",
+      "template": "filetype:conf OR filetype:ini",
+      "hint": "Додайте ключове слово, наприклад, proxy.",
+      "tags": [ "configurations", "web-pages" ]
+    },
+    {
+      "name": "Пошук токенів",
+      "description": "Пошук сторінок, що можуть містити токени безпеки.",
+      "template": "intext:\"Bearer\" OR intext:\"Authorization\"",
+      "hint": "Додайте тип токена для фільтрації.",
+      "tags": [ "web-security" ]
+    },
+    {
+      "name": "Веб-сервери",
+      "description": "Пошук сторінок, що розкривають інформацію про сервер.",
+      "template": "intext:\"Server: Apache\" OR \"Server: Nginx\"",
+      "hint": "Додайте версію сервера для уточнення.",
+      "tags": [ "servers" ]
+    },
+    {
+      "name": "Кешовані сторінки",
+      "description": "Перегляд кешованих версій сторінок.",
+      "template": "cache:example.com",
+      "hint": "Замість example.com вкажіть потрібний домен.",
+      "tags": [ "cache", "web-security" ]
+    },
+    {
+      "name": "Файли резервних копій",
+      "description": "Пошук файлів резервних копій на сторінках.",
+      "template": "filetype:bak OR filetype:old",
+      "hint": "Додайте назву програми або домен.",
+      "tags": [ "backups", "files", "web-security" ]
+    },
+    {
+      "name": "Старі веб-сторінки",
+      "description": "Пошук застарілих сторінок із вразливостями.",
+      "template": "inurl:old OR intext:\"outdated\"",
+      "hint": "Додайте ключові слова для звуження.",
+      "tags": [ "vulnerabilities" ]
+    },
+    {
+      "name": "Пошук слабких паролів",
+      "description": "Пошук сторінок, де паролі видно в тексті.",
+      "template": "intext:\"password\" filetype:txt",
+      "hint": "Додайте ім'я користувача для уточнення.",
+      "tags": [ "web-pages" ]
+    },
+    {
+      "name": "Пошук доступних документів",
+      "description": "Пошук документів, пов'язаних із веб-сторінками.",
+      "template": "filetype:pdf OR filetype:doc",
+      "hint": "Додайте ключові слова, наприклад, \"security\".",
+      "tags": [ "documents", "files", "web-pages" ]
+    }
+  ]
+}

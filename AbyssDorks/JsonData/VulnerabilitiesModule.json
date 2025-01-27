@@ -1,0 +1,158 @@
+{
+  "templates": [
+    {
+      "name": "SQL Ін’єкції",
+      "description": "Пошук сторінок, потенційно вразливих до SQL-ін’єкцій.",
+      "template": "inurl:index.php?id= OR inurl:product.php?id=",
+      "hint": "Замініть URL-шаблон для точного пошуку.",
+      "tags": [ "sql-injection", "vulnerabilities", "web-security" ]
+    },
+    {
+      "name": "Відкриті директорії",
+      "description": "Пошук відкритих директорій, які можуть містити конфіденційні файли.",
+      "template": "intitle:\"index of /\" +backup +password",
+      "hint": "Додайте ключові слова для уточнення.",
+      "tags": [ "directories", "files", "web-security" ]
+    },
+    {
+      "name": "Конфігураційні файли",
+      "description": "Знайти конфігураційні файли з потенційно чутливими даними.",
+      "template": "filetype:env OR filetype:config \"DB_PASSWORD\"",
+      "hint": "Додайте параметри, наприклад, ім'я бази даних.",
+      "tags": [ "configurations", "sensitive-data", "web-security" ]
+    },
+    {
+      "name": "RBAC файли",
+      "descriptions": "Пошук YAML-файлів для ролей і доступу RBAC",
+      "template": "\"rbac.yaml\" | \"role.yaml\" | \"rolebilding.yaml\" | \"*-rbac.yaml\" intitle:\"index of\"",
+      "hint": "Уточніть шаблон або платформу (наприклад, Kubernetes)",
+      "tags": [ "configurations", "access", "security" ]
+    },
+    {
+      "name": "Конфігураційні файли",
+      "description": "Переважно знаходить репозиторії з конфігураційними файлами.",
+      "template": "inurl:admin.cfg | inurl:setup.cfg | inurl:config.cfg",
+      "hint": "Виключіть із запиту такі сайти, як \"stackoverflow\" та інші.",
+      "tags": [ "security", "configurations" ]
+    },
+    {
+      "name": "SSH конфігурації",
+      "description": "Пошук SSH-файлів і ключів у відкритих директоріях",
+      "template": "intitle:\"index of\" \".ssh\" | \"ssh_config\" | \"ssh_know_hosts\" | \"authorized_keys\" | \"id_rsa\" \"id_dsa\"",
+      "hint": "Додайте специфічний шлях або сервер",
+      "tags": [ "ssh", "vulnerabilities" ]
+    },
+    {
+      "name": "PhpMyAdmin",
+      "description": "Пошук відкритих PhpMyAdmin панелей.",
+      "template": "inurl:\"phpmyadmin\" OR intitle:\"phpMyAdmin\"",
+      "hint": "Додайте IP-адресу або домен для уточнення.",
+      "tags": [ "admin-panels", "phpmyadmin", "vulnerabilities" ]
+    },
+    {
+      "name": "Docker конфігурації",
+      "description": "Пошук файлів конфігурацій Docker у відкритих директоріях",
+      "template": "intitle:\"index of /\" \"docker-compose.yml\" \".env\"",
+      "hint": "Уточніть платформу або сервіс для аналізу",
+      "tags": [ "docker", "vulnerabilities", "configurations" ]
+    },
+    {
+      "name": "Резервні копії",
+      "description": "Пошук відкритих резервних копій баз даних.",
+      "template": "filetype:sql OR filetype:bak intitle:\"backup\"",
+      "hint": "Додайте домен для таргетованого пошуку.",
+      "tags": [ "backups", "databases", "vulnerabilities" ]
+    },
+    {
+      "name": "Відкриті лог-файли",
+      "description": "Пошук логів, які можуть містити чутливі дані.",
+      "template": "filetype:log \"error\" OR \"warning\"",
+      "hint": "Додайте дату або ключове слово для точності.",
+      "tags": [ "logs", "sensitive-data", "web-security" ]
+    },
+    {
+      "name": "Apache сервери",
+      "description": "Пошук вразливих веб-серверів Apache.",
+      "template": "intitle:\"Apache2 Ubuntu Default Page: It works\"",
+      "hint": "Додайте геолокацію для уточнення.",
+      "tags": [ "apache", "servers", "vulnerabilities" ]
+    },
+    {
+      "name": "FTP сервери",
+      "description": "Пошук відкритих FTP серверів.",
+      "template": "intitle:\"Index of /\" inurl:ftp",
+      "hint": "Додайте ім'я сервера або домен.",
+      "tags": [ "ftp", "servers", "vulnerabilities" ]
+    },
+    {
+      "name": "Дамп баз даних",
+      "description": "Пошук баз даних, що були експортовані у відкритий доступ.",
+      "template": "intext:\"mysqldump\" filetype:sql",
+      "hint": "Додайте ім'я бази даних для фільтрації.",
+      "tags": [ "databases", "leaks", "backup" ]
+    },
+    {
+      "name": "SSH Ключі",
+      "description": "Пошук приватних SSH-ключів у відкритому доступі.",
+      "template": "intext:\"BEGIN OPENSSH PRIVATE KEY\" filetype:key",
+      "hint": "Додайте домен для локалізованого пошуку.",
+      "tags": [ "ssh", "vulnerabilities" ]
+    },
+    {
+      "name": "Відкриті адмін-панелі",
+      "description": "Пошук відкритих панелей адміністратора.",
+      "template": "inurl:admin intitle:login",
+      "hint": "Додайте домен або платформу (наприклад, Joomla).",
+      "tags": [ "admin", "vulnerabilities", "web-security" ]
+    },
+    {
+      "name": "Docker Конфігурації",
+      "description": "Пошук конфігурацій Docker у відкритому доступі.",
+      "template": "filetype:yaml intext:\"docker-compose\"",
+      "hint": "Додайте ключові слова для уточнення.",
+      "tags": [ "configurations", "vulnerabilities" ]
+    },
+    {
+      "name": "Weblogic сервери",
+      "description": "Пошук серверів Oracle WebLogic.",
+      "template": "intitle:\"Welcome to WebLogic Server\"",
+      "hint": "Додайте версію сервера для фільтрації.",
+      "tags": [ "servers", "vulnerabilities" ]
+    },
+    {
+      "name": "WordPress Плагіни",
+      "description": "Пошук вразливих WordPress плагінів.",
+      "template": "inurl:\"/wp-content/plugins/\"",
+      "hint": "Додайте ім'я плагіна або домен.",
+      "tags": [ "plugins", "vulnerabilities" ]
+    },
+    {
+      "name": "Конфігурація NGINX",
+      "description": "Пошук конфігураційних файлів NGINX.",
+      "template": "filetype:conf inurl:nginx",
+      "hint": "Додайте ключові слова, такі як proxy або server.",
+      "tags": [ "configurations", "servers" ]
+    },
+    {
+      "name": "SSL/TLS Сертифікати",
+      "description": "Пошук відкритих SSL/TLS сертифікатів.",
+      "template": "filetype:crt OR filetype:pem",
+      "hint": "Додайте ім'я домену або організацію.",
+      "tags": [ "certificates", "security" ]
+    },
+    {
+      "name": "Відкриті API ключі",
+      "description": "Пошук API ключів у відкритих джерелах.",
+      "template": "intext:\"api_key=\" OR \"secret_key=\"",
+      "hint": "Додайте платформу (наприклад, AWS).",
+      "tags": [ "api", "vulnerabilities", "security" ]
+    },
+    {
+      "name": "Відкриті медіафайли",
+      "description": "Пошук файлів медіа у відкритих директоріях.",
+      "template": "intitle:\"index of\" inurl:media OR inurl:uploads",
+      "hint": "Додайте тип файлу (наприклад, mp4 або jpg).",
+      "tags": [ "files" ]
+    }
+  ]
+}

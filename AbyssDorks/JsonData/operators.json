@@ -1,0 +1,186 @@
+{
+  "operators": [
+    {
+      "name": "daterange",
+      "description": "Пошук сторінок у певному діапазоні дат",
+      "example": "daterange:20250101-20251231",
+      "parameters": true,
+      "categories": [ "time" ]
+    },
+    {
+      "name": "before",
+      "description": "Пошук сторінок ДО вказаної дати",
+      "example": "before: 2025-01-01",
+      "parameters": true,
+      "categories": [ "time" ]
+    },
+    {
+      "name": "after",
+      "description": "Пошук сторінок ПІСЛЯ вказаної дати",
+      "example": "after:2025-01-01",
+      "parameters": true,
+      "categories": [ "time" ]
+    },
+    {
+      "name": "allinanchor",
+      "description": "Пошук сторінок де всі слова знаходяться в тексті посилання",
+      "example": "allinanchor: приклад тексту",
+      "parameters": true,
+      "categories": [ "links" ]
+    },
+    {
+      "name": "allintags",
+      "description": "Пошук сторінок де всі вказані слова знаходяться в HTML-тегах",
+      "example": "allintags: meta keywords",
+      "parameters": true,
+      "categories": [ "metadata" ]
+    },
+    {
+      "name": "inurl",
+      "description": "Пошук сторінок де вказане слово знаходиться в URL-адресі",
+      "example": "inurl:admin",
+      "parameters": true,
+      "categories": [ "links" ]
+    },
+    {
+      "name": "site",
+      "description": "Пошук на конкретному сайті або домені",
+      "example": "site: example.com",
+      "parameters": true,
+      "categories": [ "targeting" ]
+    },
+    {
+      "name": "intext",
+      "description": "Пошук сторінок де вказане слово знаходиться в тексті сторінки",
+      "example": "intext: password",
+      "parameters": true,
+      "categories": [ "content-search" ]
+    },
+    {
+      "name": "ext",
+      "description": "Пошук файлів певного розширення (те ж саме що filetype)",
+      "example": "ext: pdf",
+      "parameters": true,
+      "categories": [ "files" ]
+    },
+    {
+      "name": "|",
+      "description": "Пошук сторінок, що містять хоча б один з вказаних слів/фраз (логічне АБО)",
+      "example": "кішка | собака",
+      "parameters": true,
+      "categories": [ "query-modifiers" ]
+    },
+    {
+      "name": "+",
+      "description": "Обов'язкова наявність слова/фрази в результатах пошуку.",
+      "example": "кішка +собака",
+      "parameters": true,
+      "categories": [ "query-modifiers" ]
+    },
+    {
+      "name": "-",
+      "description": "Виключення слова/фрази з результатів пошуку.",
+      "example": "кішка -собака",
+      "parameters": true,
+      "categories": [ "query-modifiers" ]
+    },
+    {
+      "name": "“ ”",
+      "description": "Пошук точної фрази.",
+      "example": "“текст фрази”",
+      "parameters": true,
+      "categories": [ "query-modifiers" ]
+    },
+    {
+      "name": "define",
+      "description": "Пошук визначення слова.",
+      "example": "define:алгоритм",
+      "parameters": true,
+      "categories": [ "content-search" ]
+    },
+    {
+      "name": "*",
+      "description": "Підстановка будь-якого слова/фрази (символ підстановки).",
+      "example": "кращий * друг",
+      "parameters": false,
+      "categories": [ "query-modifiers" ]
+    },
+    {
+      "name": "filetype",
+      "description": "Пошук файлів певного типу.",
+      "example": "filetype:docx",
+      "parameters": true,
+      "categories": [ "files" ]
+    },
+    {
+      "name": "allintext",
+      "description": "Пошук сторінок, де всі вказані слова знаходяться в тексті сторінки.",
+      "example": "allintext:слово1 слово2",
+      "parameters": true,
+      "categories": [ "content-search" ]
+    },
+    {
+      "name": "allinurl",
+      "description": "Пошук сторінок, де всі вказані слова знаходяться в URL-адресі.",
+      "example": "allinurl:слово1 слово2",
+      "parameters": true,
+      "categories": [ "links" ]
+    },
+    {
+      "name": "AROUND(X)",
+      "description": "Пошук слів/фраз, що знаходяться на відстані X слів одне від одного.",
+      "example": "кішка AROUND(5) собака",
+      "parameters": true,
+      "categories": [ "proximity-search" ]
+    },
+    {
+      "name": "info",
+      "description": "Отримання інформації про веб-сторінку.",
+      "example": "info:example.com",
+      "parameters": true,
+      "categories": [ "targeting" ]
+    },
+    {
+      "name": "allintitle",
+      "description": "Пошук сторінок, де всі вказані слова знаходяться в заголовку сторінки.",
+      "example": "allintitle:слово1 слово2",
+      "parameters": true,
+      "categories": [ "content-search" ]
+    },
+    {
+      "name": "link",
+      "description": "Пошук сторінок, що посилаються на вказаний URL.",
+      "example": "link:example.com",
+      "parameters": true,
+      "categories": [ "links" ]
+    },
+    {
+      "name": "related",
+      "description": "Пошук сторінок, схожих на вказану.",
+      "example": "related:example.com",
+      "parameters": true,
+      "categories": [ "targeting" ]
+    },
+    {
+      "name": "cache",
+      "description": "Перегляд кешованої версії сторінки.",
+      "example": "cache:example.com",
+      "parameters": true,
+      "categories": [ "snapshots" ]
+    },
+    {
+      "name": "intitle",
+      "description": "Пошук сторінок, де вказане слово/фраза знаходиться в заголовку сторінки.",
+      "example": "intitle:index of",
+      "parameters": true,
+      "categories": [ "content-search" ]
+    },
+    {
+      "name": "loc",
+      "description": "Пошук результатів з певного географічного розташування.",
+      "example": "restaurants loc:London",
+      "parameters": true,
+      "categories": [ "targeting" ]
+    }
+  ]
+}

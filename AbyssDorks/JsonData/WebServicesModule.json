@@ -1,0 +1,144 @@
+{
+  "templates": [
+    {
+      "name": "API ключі",
+      "description": "Пошук сторінок, які можуть містити API ключі.",
+      "template": "intext:\"api_key\" OR intext:\"api_secret\"",
+      "hint": "Додайте платформу, наприклад AWS або Google.",
+      "tags": [ "api" ]
+    },
+    {
+      "name": "Відкриті конфігурації API",
+      "description": "Пошук сторінок з конфігураціями API.",
+      "template": "filetype:json OR filetype:yaml intext:\"api\"",
+      "hint": "Додайте ключові слова для уточнення.",
+      "tags": [ "api", "configurations", "web-services" ]
+    },
+    {
+      "name": "SOAP сервіси",
+      "description": "Пошук веб-сервісів на основі SOAP.",
+      "template": "inurl:?wsdl",
+      "hint": "Додайте домен або специфіку сервісу.",
+      "tags": [ "web-services" ]
+    },
+    {
+      "name": "AWS дані",
+      "descriptions": "Пошук конфіденційних даних AWS на публічних веб-інструментах",
+      "template": "(site:jsonformatter.org | site:codebeautify.org) & (intext:aws | intext:bucket | intext:password | intext:secret | intext:username)",
+      "hint": "Додайте специфічні ключові слова, наприклад access_key",
+      "tags": ["aws", "api", "web-services"]
+    },
+    {
+      "name": "REST API кінцеві точки",
+      "description": "Пошук REST API кінцевих точок.",
+      "template": "inurl:/api/ OR inurl:/v1/ OR inurl:/v2/",
+      "hint": "Додайте назву платформи для точності.",
+      "tags": [ "web-services" ]
+    },
+    {
+      "name": "Графік запитів GraphQL",
+      "description": "Пошук сторінок з інтеграціями GraphQL.",
+      "template": "intext:\"GraphQL\" OR inurl:/graphql",
+      "hint": "Додайте домен для уточнення.",
+      "tags": [ "api", "web-services" ]
+    },
+    {
+      "name": "Пошук проксі-серверів",
+      "description": "Пошук відкритих проксі-серверів.",
+      "template": "filetype:conf intext:proxy_pass",
+      "hint": "Додайте IP або ім'я хоста для фільтрації.",
+      "tags": [ "web-services" ]
+    },
+    {
+      "name": "JSON RPC сервіси",
+      "description": "Пошук JSON RPC API сервісів.",
+      "template": "inurl:/jsonrpc OR intext:\"JSON-RPC\"",
+      "hint": "Додайте тип сервісу або домен.",
+      "tags": [ "api", "web-services" ]
+    },
+    {
+      "name": "FTP конфігурації",
+      "description": "Пошук відкритих конфігурацій FTP сервісів.",
+      "template": "filetype:ini OR filetype:conf inurl:ftp",
+      "hint": "Додайте ключові слова для фільтрації.",
+      "tags": [ "ftp", "configurations", "web-services" ]
+    },
+    {
+      "name": "HTTP заголовки",
+      "description": "Пошук сторінок із специфічними HTTP заголовками.",
+      "template": "intext:\"Content-Type: application/json\" OR \"Authorization: Bearer\"",
+      "hint": "Додайте специфічний заголовок або домен.",
+      "tags": [ "http", "web-services" ]
+    },
+    {
+      "name": "Уразливі токени",
+      "description": "Пошук сторінок, що містять чутливі токени.",
+      "template": "intext:\"Bearer\" OR intext:\"access_token\"",
+      "hint": "Додайте ключове слово для фільтрації.",
+      "tags": [ "web-services" ]
+    },
+    {
+      "name": "Docker файли",
+      "description": "Пошук Docker файлів у публічному доступі.",
+      "template": "filetype:docker OR filetype:yaml intext:docker",
+      "hint": "Додайте назву сервісу або ключові слова.",
+      "tags": [ "configurations", "web-services" ]
+    },
+    {
+      "name": "Перенаправлення HTTP",
+      "description": "Пошук сторінок із відкритими редиректами.",
+      "template": "inurl:redirect? OR inurl:link=",
+      "hint": "Додайте конкретний домен для звуження пошуку.",
+      "tags": [ "http", "web-security" ]
+    },
+    {
+      "name": "Вразливі версії сервісів",
+      "description": "Пошук сторінок, що розкривають версії сервісів.",
+      "template": "intext:\"Apache/\" OR \"Nginx/\"",
+      "hint": "Додайте тип сервісу або ключове слово.",
+      "tags": [ "web-servers", "web-services" ]
+    },
+    {
+      "name": "OpenAPI інтеграції",
+      "description": "Пошук сторінок, що містять OpenAPI специфікації.",
+      "template": "filetype:yaml OR filetype:json intext:\"openapi\"",
+      "hint": "Додайте ім'я сервісу для уточнення.",
+      "tags": [ "api" ]
+    },
+    {
+      "name": "Вебсокети",
+      "description": "Пошук сторінок із WebSocket інтеграціями.",
+      "template": "inurl:\"ws://\" OR inurl:\"wss://\"",
+      "hint": "Додайте домен або специфіку для уточнення.",
+      "tags": [ "api", "web-services" ]
+    },
+    {
+      "name": "HTTP статуси",
+      "description": "Пошук сторінок за HTTP статусами.",
+      "template": "intext:\"HTTP/1.1 200 OK\" OR \"HTTP/1.1 404 Not Found\"",
+      "hint": "Додайте специфічний статус для фільтрації.",
+      "tags": [ "http", "web-services" ]
+    },
+    {
+      "name": "Сторінки налаштувань",
+      "description": "Пошук сторінок із налаштуваннями веб-сервісів.",
+      "template": "intitle:\"settings\" OR intext:\"configuration\"",
+      "hint": "Додайте ключові слова для фільтрації.",
+      "tags": [ "configurations", "web-services" ]
+    },
+    {
+      "name": "LDAP конфігурації",
+      "description": "Пошук сторінок із LDAP конфігураціями.",
+      "template": "filetype:conf OR intext:\"ldap_host\"",
+      "hint": "Додайте специфічний домен або сервер.",
+      "tags": [ "configurations", "web-services" ]
+    },
+    {
+      "name": "Відкриті сертифікати",
+      "description": "Пошук сторінок із відкритими SSL/TLS сертифікатами.",
+      "template": "filetype:crt OR filetype:cert",
+      "hint": "Додайте назву сервісу або домен.",
+      "tags": [ "ssl", "certificates", "web-services" ]
+    }
+  ]
+}

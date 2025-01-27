@@ -1,0 +1,151 @@
+{
+  "templates": [
+    {
+      "name": "LinkedIn Профілі",
+      "description": "Знайти профілі на LinkedIn за іменем.",
+      "template": "site:linkedin.com/in \"Ім'я Прізвище\"",
+      "hint": "Замініть 'Ім'я Прізвище' на реальні дані.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Facebook Аккаунти",
+      "description": "Пошук профілів на Facebook.",
+      "template": "site:facebook.com \"Ім'я Прізвище\"",
+      "hint": "Додайте місто або інтереси для уточнення.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Електронні пошти",
+      "description": "Пошук електронних поштових адрес.",
+      "template": "\"@gmail.com\" OR \"@yahoo.com\" \"Ім'я Прізвище\"",
+      "hint": "Замініть 'Ім'я Прізвище' на потрібну особу.",
+      "tags": [ "emails" ]
+    },
+    {
+      "name": "Телефонні номери",
+      "description": "Знайти телефонні номери у відкритих джерелах.",
+      "template": "\"phone\" \"Ім'я Прізвище\"",
+      "hint": "Додайте ключові слова або регіон.",
+      "tags": [ "phone-numbers" ]
+    },
+    {
+      "name": "Twitter Профілі",
+      "description": "Пошук профілів у Twitter.",
+      "template": "site:twitter.com \"Ім'я Прізвище\"",
+      "hint": "Додайте хештеги або інтереси.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Резюме",
+      "description": "Пошук резюме у відкритих джерелах.",
+      "template": "\"resume\" \"Ім'я Прізвище\" filetype:pdf",
+      "hint": "Замініть 'Ім'я Прізвище' на реальні дані.",
+      "tags": [ "documents" ]
+    },
+    {
+      "name": "Користувачі в базах даних",
+      "description": "Списки користувачів в базах даних",
+      "template": "inurl:users (filetype:mdb | filetype:db)",
+      "hint": "Спробуйте поексперментувати з оператором \"inurl\"",
+      "tags": [ "database" ]
+    },
+    {
+      "name": "Профілі користувачів",
+      "description": "Ел. пошти, профілі користувачів в базах даних.",
+      "template": "filetype:mdb (Inurl:email | Inurl:backup | Inurl:profiles)",
+      "hint": "Змінюйте тип файла або додайте домени.",
+      "tags": [ "database", "emails" ]
+    },
+    {
+      "name": "GitHub Профілі",
+      "description": "Знайти профілі на GitHub.",
+      "template": "site:github.com \"Ім'я Прізвище\"",
+      "hint": "Додайте мову програмування або проєкт.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "ZoomInfo Профілі",
+      "description": "Пошук бізнес-профілів на ZoomInfo.",
+      "template": "site:zoominfo.com \"Ім'я Прізвище\"",
+      "hint": "Додайте компанію або галузь.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Витоки паролів",
+      "description": "Перевірити, чи є особа в витоках даних.",
+      "template": "\"Ім'я Прізвище\" filetype:txt \"password\"",
+      "hint": "Додайте дату або сервіс.",
+      "tags": [ "leaks" ]
+    },
+    {
+      "name": "Фото в соцмережах",
+      "description": "Пошук фото особи у відкритих джерелах.",
+      "template": "site:instagram.com \"Ім'я Прізвище\"",
+      "hint": "Додайте місце або подію.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Публічні Google Документи",
+      "description": "Знайти загальнодоступні Google-документи.",
+      "template": "site:docs.google.com \"Ім'я Прізвище\"",
+      "hint": "Додайте ключові слова або тип документа.",
+      "tags": [ "documents" ]
+    },
+    {
+      "name": "WhatsApp Групи",
+      "description": "Пошук публічних WhatsApp груп.",
+      "template": "site:chat.whatsapp.com \"Ім'я Прізвище\"",
+      "hint": "Замініть ім'я або додайте ключові слова.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Місцезнаходження через соцмережі",
+      "description": "Знайти дані про місцезнаходження особи.",
+      "template": "\"location\" site:instagram.com \"Ім'я Прізвище\"",
+      "hint": "Додайте геолокацію або події.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Публічні API ключі",
+      "description": "Пошук API ключів, пов'язаних з особою.",
+      "template": "\"api_key\" \"Ім'я Прізвище\"",
+      "hint": "Додайте платформу або тип ключа.",
+      "tags": [ "api" ]
+    },
+    {
+      "name": "Мережеві зв’язки",
+      "description": "Пошук зв'язків через професійні мережі.",
+      "template": "site:linkedin.com/in \"Ім'я Прізвище\" connections",
+      "hint": "Уточніть компанію або галузь.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Записи в блогах",
+      "description": "Знайти згадки про особу у блогах.",
+      "template": "site:medium.com \"Ім'я Прізвище\"",
+      "hint": "Додайте тему або ключове слово.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Підписки на YouTube",
+      "description": "Знайти канали або підписки на YouTube.",
+      "template": "site:youtube.com \"Ім'я Прізвище\"",
+      "hint": "Додайте тему або канал.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Форуми та обговорення",
+      "description": "Пошук згадок про особу на форумах.",
+      "template": "site:reddit.com \"Ім'я Прізвище\"",
+      "hint": "Додайте підфорум або тему.",
+      "tags": [ "social-media" ]
+    },
+    {
+      "name": "Публікації в Git",
+      "description": "Пошук публічних Git-репозиторіїв.",
+      "template": "site:gitlab.com \"Ім'я Прізвище\"",
+      "hint": "Додайте мову програмування або тему проєкту.",
+      "tags": [ "social-media" ]
+    }
+  ]
+}

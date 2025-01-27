@@ -1,0 +1,350 @@
+﻿@{
+    ViewData["Title"] = "Dork Generator";
+}
+
+<div id="query-section" style="text-align: center; margin-top: 20px;">
+    <h3>Введення запиту:</h3>
+    <textarea id="queryText" style="width: 80%; height: 40px; border-radius: 20px; margin-top: 20px; font-size: 22px;"></textarea>
+    <br>
+    <button style="border-radius: 20px; margin-top: 20px;" id="executeSearch">Пошук</button>
+</div>
+
+<div id="operator-section" style="margin-top: 20px; text-align: center;">
+    <h3>Модифікація запиту:</h3>
+    <select id="operatorSelect" style="margin-right: 10px;">
+        <option>Уточніть ваш запит</option>
+        <option value="before">До дати</option>
+        <option value="after">Після дати</option>
+        <option value="site">Сайт/домен</option>
+        <option value="-">Виключення</option>
+        <option value="loc">Локація</option>
+    </select>
+    <input id="operatorParameter" type="text" placeholder="Параметр" style="margin-right: 10px; display: none; padding: 5px; border-radius: 5px;" />
+
+    <input id="datePicker" type="date" style="margin-right: 10px; display: none; padding: 5px; border-radius: 5px;" />
+
+    <select id="domainSelect" style="margin-right: 10px; display: none; padding: 5px; border-radius: 5px;">
+        <option value="">Виберіть домен</option>
+        <option value=".com">.com</option>
+        <option value=".org">.org</option>
+        <option value=".ru">.ru</option>
+        <option value=".ua">.ua</option>
+        <option value=".de">.de</option>
+        <option value=".pl">.pl</option>
+        <option value=".cz">.cz</option>
+        <option value=".biz">.biz</option>
+    </select>
+
+    <select id="locationSelect" style="margin-right: 10px; display: none; padding: 5px; border-radius: 5px;">
+        <option value="">Виберіть локацію</option>
+        <option value="London">Лондон</option>
+        <option value="Paris">Париж</option>
+        <option value="Kyiv">Київ</option>
+        <option value="New York">Нью-Йорк</option>
+    </select>
+
+    <button id="addOperatorBtn" style="padding: 5px 15px; border-radius: 5px;">Додати</button>
+</div>
+
+<div id="error-message" style="display: none; color: red; text-align: center; margin-top: 20px;"></div>
+
+<hr style="width: 80%; margin: 20px auto">
+
+<div id="module-selection" style="text-align: center;">
+    <h2>Модулі:</h2>
+    <div id="moduleButtonContainer">
+        @{
+            var moduleDictionary = new Dictionary<string, string> 
+            {
+                { "AdminPanelsModule", "Адмін-панелі" },
+                { "EmailSearchModule", "Пошук електронних листів" },
+                { "FilesDocumentModule", "Документи та файли" },
+                { "MetadataModule", "Метадані" },
+                { "NetworkDevicesModule", "Мережеві пристрої" },
+                { "PeopleSearchModule", "Пошук людей" },
+                { "VulnerabilitiesModule", "Вразливості" },
+                { "WebPageModule", "Веб-сторінки" },
+                { "WebServicesModule", "Веб-сервіси" }
+            };
+
+            foreach (var module in moduleDictionary)
+            {
+                <button style="margin-top: 20px; height: 50px; font-size: 20px;" class="module-button" data-module="@module.Key">@module.Value</button>
+            }
+        }        
+    </div>
+</div>
+
+<div id="tags-section" style="display: none; text-align: center; margin-top: 20px;">
+    <h3>Теги:</h3>
+    <div id="tagsContainer" style="display: flex; text-align: center; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+</div>
+
+<div id="templates-section" style="display: none; text-align: center; margin-top: 20px;">
+    <h3>Шаблони:</h3>
+    <table id="templateTable" style="width: 80%; margin: 0 auto; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px">Назва</th>
+
+                <th style="border: 1px solid #ddd; padding: 8px">Опис</th>
+
+                <th style="border: 1px solid #ddd; padding: 8px">Підказка</th>
+
+                <th style="border: 1px solid #ddd; padding: 8px">Шаблон</th>
+
+                <th style="border: 1px solid #ddd; padding: 8px">Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<div id="results-section" style="display: none; text-align: center; margin-top: 20px;">
+    <h3>Результати:</h3>
+    <ul id="resultsContainer"></ul>
+</div>
+
+@section Scripts {
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #moduleButtonContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .module-button, .tag-button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            border-radius: 250px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.4s;
+        }
+
+            .module-button:hover, .tag-button:hover {
+                background-color: #0056b3; /* Темніший синій при наведенні */
+            }
+
+            .module-button[data-module="AdminPanelsModule"] {
+                background-color: #f39c12; /* Жовтий */
+            }
+
+            .module-button[data-module="EmailSearchModule"] {
+                background-color: #e74c3c; /* Червоний */
+            }
+
+            .module-button[data-module="FilesDocumentModule"] {
+                background-color: #27ae60; /* Зелений */
+            }
+
+            .module-button[data-module="MetadataModule"] {
+                background-color: #8e44ad; /* Фіолетовий */
+            }
+
+            .module-button[data-module="NetworkDevicesModule"] {
+                background-color: #3498db; /* Блакитний */
+            }
+
+            .module-button[data-module="PeopleSearchModule"] {
+                background-color: #1abc9c; /* Бірюзовий */
+            }
+
+            .module-button[data-module="VulnerabilitiesModule"] {
+                background-color: #e67e22; /* Помаранчевий */
+            }
+
+            .module-button[data-module="WebPageModule"] {
+                background-color: #2ecc71; /* Салатовий */
+            }
+
+            .module-button[data-module="WebServicesModule"] {
+                background-color: #9b59b6; /* Темно-фіолетовий */
+            }
+
+            .module-button:active {
+                background-color: #34495e; /* Темно-сірий при натисканні */
+            }
+    </style>
+    <script>
+            $(document).ready(function () {
+                $("#operatorSelect").on("change", function () {
+                    const selectedOperator = $(this).val();
+
+                    $("#operatorParameter, #dataPicker, #domainSelect, #locationSelect").hide();
+
+                    if (selectedOperator === "before" || selectedOperator === "after") {
+                        $("#datePicker").show();
+                    } else if (selectedOperator === "site") {
+                        $("#domainSelect").show();
+                    } else if (selectedOperator === "loc") {
+                        $("#locationSelect").show();
+                    } else if (selectedOperator === "-") {
+                        $("#operatorParameter").show().attr("placeholder", "Введіть слово для виключення");
+                    }
+                });
+
+                $("#addOperatorBtn").on("click", function () {
+                    const baseQuery = $("#queryText").val();
+                    const operatorName = $("#operatorSelect").val();
+
+                    if (!operatorName) {
+                        alert("Будь ласка, виберіть оператор.");
+                        return;
+                    }
+
+                    let parameter = "";
+
+                    // Визначення параметра залежно від оператора
+                    if (operatorName === "before" || operatorName === "after") {
+                        parameter = $("#datePicker").val();
+                        if (!parameter) {
+                            alert("Будь ласка, виберіть дату.");
+                            return;
+                        }                        
+                    } else if (operatorName === "site") {
+                        parameter = $("#domainSelect").val();
+                        if (!parameter) {
+                            alert("Будь ласка, виберіть домен.");
+                            return;
+                        }
+                    } else if (operatorName === "loc") {
+                        parameter = $("#locationSelect").val();
+                        if (!parameter) {
+                            alert("Будь ласка, виберіть локацію.");
+                            return;
+                        }
+                    } else if (operatorName === "-") {
+                        parameter = $("#operatorParameter").val();
+                        if (!parameter) {
+                            alert("Будь ласка, введіть слова для виключення.");
+                            return;
+                        }
+                    }
+
+                    const modifiedQuery = `${baseQuery} ${operatorName}:${parameter}`;
+                    $("#queryText").val(modifiedQuery); 
+                    alert("Оператор успішно додано до запиту!");
+                });
+            });
+
+            $(document).on("click", ".module-button", function () {
+                const moduleName = $(this).data("module");
+                if (!moduleName) return;
+
+                $.get("/Dork/GetTags", { moduleName })
+                    .done(tags => {
+                        $("#tagsContainer").html("");
+                        tags.forEach(tag => {
+                            $("#tagsContainer").append(`<button style="margin-top: 12px;" class="tag-button" data-tag="${tag}">${tag}</button>`);
+                        });
+                        $("#tags-section").show();
+                        $(".module-button").removeClass("active");
+                        $(this).addClass("active");
+                    });
+            });
+
+            $(document).on("click", ".tag-button", function () {
+                $(".tag-button").removeClass("active");
+                $(this).addClass("active");
+
+                const moduleName = $(".module-button.active").data("module");
+                const selectedTag = $(this).data("tag");
+
+                if (!selectedTag) {
+                    $("#templates-section").hide();
+                    return;
+                } 
+
+                $.get("/Dork/GetTemplates", { moduleName, tags: selectedTag })
+                    .done(templates => {
+                        const tableBody = $("#templateTable tbody");
+                        tableBody.empty();
+                        templates.forEach(template => {
+                            const safeJson = JSON.stringify(template.template).replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+                            const row = `
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${template.name}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${template.description}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${template.hint}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${template.template}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <button class="select-template" data-template='${safeJson}'>Вибрати</button>
+                                    </td>
+                                </tr>
+                            `;
+                            tableBody.append(row);
+                        });
+                        $("#templates-section").show();
+                    });
+            });
+
+            $(document).on("click", ".select-template", function () {
+                try {
+                const templateData = JSON.parse($(this).data("template").replace(/&quot;/g, '"'));
+                    console.log("Вибраний шаблон: ", templateData);
+                    $("#queryText").val(templateData);
+                    $("#query-section").show();
+                } catch (error) {
+                    alert("Неможливо вибрати шаблон. Перевірте структуру даних.");
+                }
+            });
+
+            $("#executeSearch").on("click", function () {
+                let query = $("#queryText").val();
+                if (!query) {
+                    alert("Будь ласка, введіть запит");
+                    return;
+                }              
+
+                const encodedQuery = encodeURIComponent(query);
+
+                $.post("/Dork/ExecuteSearch", { query })
+                    .done(results => {
+                        if (!results === 0) {
+                            alert("Результати не знайдено.");
+                            return;
+                        }
+                        const encodedQuery = encodeURIComponent(query);
+                    window.location.href = `/Dork/Results?query=${encodedQuery}`;
+                    })
+                    .fail(err => {
+                        $("#error-message").text("Нічого не знайдено.");
+                        $("#error-message").show();
+                    });
+            });
+
+            $("#generateQuery").on("click", function () {
+                const moduleName = $(".module-button.active").data("module");
+                const selectedTemplate = $("#templateTable .select-template.active").data("template");
+                const parameters = {}; // TODO: заповніть параметри з інпутів
+
+                if (!selectedTemplate) {
+                    alert("Виберіть шаблон перед генерацією запиту!");
+                    return;
+                }
+
+                $.post("/Dork/GenerateQuery", { moduleName, templateName: selectedTemplate.name, parameters })
+                    .done(data => {
+                        $("#queryText").val(data.Query);
+                        $("#query-section").show();
+                    })
+                    .fail(err => alert("Помилка генерації запиту."));
+            });
+    </script>
+}

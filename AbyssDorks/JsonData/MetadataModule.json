@@ -1,0 +1,137 @@
+{
+  "templates": [
+    {
+      "name": "Метадані PDF",
+      "description": "Пошук PDF-файлів із вказаними метаданими.",
+      "template": "filetype:pdf intext:\"Author\" intext:\"Title\"",
+      "hint": "Уточніть ім’я автора або ключове слово.",
+      "tags": [ "pdf", "metadata" ]
+    },
+    {
+      "name": "EXIF дані зображень",
+      "description": "Знайти зображення з EXIF метаданими.",
+      "template": "filetype:jpg intext:\"Camera Model\" intext:\"Date Taken\"",
+      "hint": "Додайте модель камери або дату.",
+      "tags": [ "images", "exif" ]
+    },
+    {
+      "name": "Документи MS Office",
+      "description": "Пошук метаданих у документах Word.",
+      "template": "filetype:docx intext:\"Last Modified By\"",
+      "hint": "Вкажіть автора або дату модифікації.",
+      "tags": [ "metadata" ]
+    },
+    {
+      "name": "Метадані презентацій",
+      "description": "Знайти презентації із вказаними метаданими.",
+      "template": "filetype:pptx intext:\"Created By\"",
+      "hint": "Уточніть ім’я автора або тему.",
+      "tags": [ "metadata" ]
+    },
+    {
+      "name": "Властивості Excel",
+      "description": "Пошук таблиць Excel із метаданими.",
+      "template": "filetype:xlsx intext:\"Manager\" intext:\"Company\"",
+      "hint": "Додайте назву компанії або менеджера.",
+      "tags": [ "excel", "metadata" ]
+    },
+    {
+      "name": "Технічні специфікації",
+      "description": "Знайти технічні документи з метаданими.",
+      "template": "filetype:txt intext:\"Specifications\" intext:\"Version\"",
+      "hint": "Вкажіть версію або продукт.",
+      "tags": [ "metadata" ]
+    },
+    {
+      "name": "Лог-файли з мітками",
+      "description": "Пошук логів із вказаними мітками часу.",
+      "template": "filetype:log intext:\"Timestamp\" intext:\"User ID\"",
+      "hint": "Уточніть формат часу або ID.",
+      "tags": [ "logs", "metadata" ]
+    },
+    {
+      "name": "Файли конфігурацій",
+      "description": "Знайти конфігураційні файли з параметрами.",
+      "template": "filetype:conf intext:\"Config Version\" intext:\"Last Updated\"",
+      "hint": "Додайте назву продукту або сервісу.",
+      "tags": [ "configuration", "metadata" ]
+    },
+    {
+      "name": "Списки користувачів",
+      "description": "Пошук текстових файлів зі списками користувачів.",
+      "template": "filetype:txt intext:\"User\" intext:\"Role\"",
+      "hint": "Уточніть роль або користувача.",
+      "tags": [ "users", "metadata" ]
+    },
+    {
+      "name": "SSH ключі",
+      "description": "Знайти файли з приватними SSH ключами.",
+      "template": "filetype:pem intext:\"PRIVATE KEY\"",
+      "hint": "Уточніть домен або IP-адресу.",
+      "tags": [ "security", "keys" ]
+    },
+    {
+      "name": "Конфігурації баз даних",
+      "description": "Пошук файлів із налаштуваннями баз даних.",
+      "template": "filetype:ini intext:\"DB_NAME\" intext:\"DB_USER\"",
+      "hint": "Вкажіть тип бази даних.",
+      "tags": [ "databases", "metadata" ]
+    },
+    {
+      "name": "Теги HTML",
+      "description": "Пошук сторінок із вказаними мета-тегами.",
+      "template": "filetype:html intext:\"<meta name=\"\"description\"\">\"",
+      "hint": "Уточніть ключове слово або тег.",
+      "tags": [ "html", "tags" ]
+    },
+    {
+      "name": "Музичні файли",
+      "description": "Пошук музичних файлів із метаданими.",
+      "template": "filetype:mp3 intext:\"Album\" intext:\"Artist\"",
+      "hint": "Додайте ім’я виконавця або альбом.",
+      "tags": [ "audio", "metadata" ]
+    },
+    {
+      "name": "Звіти про уразливості",
+      "description": "Пошук звітів із деталями про уразливості.",
+      "template": "filetype:pdf intext:\"Vulnerability Report\" intext:\"Severity\"",
+      "hint": "Уточніть тип уразливості або компанію.",
+      "tags": [ "security", "reports" ]
+    },
+    {
+      "name": "Старі резервні копії",
+      "description": "Пошук старих бекапів із метаданими.",
+      "template": "filetype:bak intext:\"Created By\" intext:\"Backup Date\"",
+      "hint": "Додайте дату створення або сервіс.",
+      "tags": [ "backup", "metadata" ]
+    },
+    {
+      "name": "Документи про доступ",
+      "description": "Знайти файли з даними доступу.",
+      "template": "filetype:txt intext:\"Access Level\" intext:\"Authorized\"",
+      "hint": "Вкажіть рівень доступу або ID.",
+      "tags": [ "security", "access" ]
+    },
+    {
+      "name": "Метадані JSON",
+      "description": "Пошук JSON-файлів із ключовими даними.",
+      "template": "filetype:json intext:\"metadata\" intext:\"version\"",
+      "hint": "Уточніть тип даних або версію.",
+      "tags": [ "json", "metadata" ]
+    },
+    {
+      "name": "Метадані зображень PNG",
+      "description": "Знайти PNG з вбудованими метаданими.",
+      "template": "filetype:png intext:\"Metadata\" intext:\"Description\"",
+      "hint": "Уточніть тип даних або опис.",
+      "tags": [ "images", "metadata" ]
+    },
+    {
+      "name": "Документи у форматі RTF",
+      "description": "Пошук метаданих у текстових файлах RTF.",
+      "template": "filetype:rtf intext:\"Author\" intext:\"Modified Date\"",
+      "hint": "Уточніть автора або дату.",
+      "tags": [ "documents", "metadata" ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "templates": [
+    {
+      "name": "Пошта домену",
+      "description": "Пошук електронних адрес, прив’язаних до певного домену.",
+      "template": "site:example.com intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "general", "contacts" ]
+    },
+    {
+      "name": "Пошта у файлах",
+      "description": "Знайти електронні адреси у документах загального доступу.",
+      "template": "filetype:doc OR filetype:pdf OR filetype:xls intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "files", "documents" ]
+    },
+    {
+      "name": "Злиті адреси",
+      "description": "Пошук злитих баз електронних адрес в індексованих файлах.",
+      "template": "intitle:index.of emails OR mailing list",
+      "hint": "Налаштуйте запит для конкретних списків або назв файлів.",
+      "tags": [ "data", "public" ]
+    },
+    {
+      "name": "Адреси за іменем",
+      "description": "Пошук електронних адрес, пов’язаних із конкретним ім’ям користувача.",
+      "template": "intext:user@example.com OR username@example.com",
+      "hint": "Замініть 'user@example.com' на шуканий email.",
+      "tags": [ "contacts", "identification" ]
+    },
+    {
+      "name": "Пошта у логах",
+      "description": "Знайти електронні адреси у відкритих лог-файлах.",
+      "template": "filetype:log intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "logs", "security" ]
+    },
+    {
+      "name": "Соцмережі",
+      "description": "Пошук електронних адрес у профілях соцмереж.",
+      "template": "site:twitter.com OR site:linkedin.com intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "social-media", "public" ]
+    },
+    {
+      "name": "Адмін пошта",
+      "description": "Пошук контактів адміністраторів та технічної підтримки.",
+      "template": "intext:admin@example.com OR support@example.com",
+      "hint": "Замініть 'admin@example.com' на бажаний email.",
+      "tags": [ "contacts", "admin" ]
+    },
+    {
+      "name": "Пошта у конфігах",
+      "description": "Пошук електронних адрес у файлах конфігурації.",
+      "template": "filetype:ini OR filetype:conf OR filetype:config intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "files", "configuration" ]
+    },
+    {
+      "name": "Тимчасова пошта",
+      "description": "Знайти тимчасові електронні адреси, які використовуються для тестів.",
+      "template": "intext:@tempmail.com OR intext:@10minutemail.com",
+      "hint": "Додайте більше популярних доменів тимчасової пошти.",
+      "tags": [ "emails" ]
+    },
+    {
+      "name": "Резервні копії",
+      "description": "Знайти електронні адреси у резервних копіях файлів.",
+      "template": "filetype:bak OR filetype:zip OR filetype:tar intext:@example.com",
+      "hint": "Замініть 'example.com' на потрібний домен.",
+      "tags": [ "files", "backup" ]
+    }
+  ]
+}

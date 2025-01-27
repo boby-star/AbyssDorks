@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "name": "Панель входу",
+      "description": "Пошук сторінок авторизації адмін-панелей.",
+      "template": "inurl:admin intitle:login",
+      "hint": "Можете уточнити сайт за допомогою оператора site:.",
+      "tags": [ "admin", "authentication" ]
+    },
+    {
+      "name": "Контрольна панель",
+      "description": "Знайти контрольні панелі адмінів.",
+      "template": "intitle:\"Control Panel\" inurl:admin",
+      "hint": "Додайте назву сайту для точності.",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "PhpMyAdmin",
+      "description": "Знайти відкриті панелі PhpMyAdmin.",
+      "template": "inurl:phpmyadmin intitle:login",
+      "hint": "Додайте сайт, якщо необхідно.",
+      "tags": [ "database", "admin" ]
+    },
+    {
+      "name": "Lotus Domino Web Administration",
+      "description": "Пошук сторінок адміністративних панелей Lotus Domino.",
+      "template": "inurl:\"webadmin\" filetype:nsf",
+      "hint": "Застосовуйте для аналізу серверів Domino.",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "Microsoft Outlook Web Access",
+      "description": "Пошук сторінок входу Microsoft Outlook або Exchange.",
+      "template": "inurl:\"exchange/logon.asp\" OR intitle:\"Microsoft Outlook Web Access - Logon\"",
+      "hint": "Використовуйте для дослідження поштових серверів Microsoft.",
+      "tags": [ "microsoft", "email" ]
+    },
+    {
+      "name": "Mambo адмін-панель",
+      "description": "Пошук сторінок входу до адмін-панелей Mambo",
+      "template": "inurl:administrator \"welcome to mambo\"",
+      "hint": "Використовуйте для пошуку вразливих CMS Mambo",
+      "tags": [ "admin", "cms" ]
+    },
+    {
+      "name": "cPanel",
+      "description": "Пошук сторінок входу в cPanel.",
+      "template": "intitle:\"cPanel Login\"",
+      "hint": "Уточніть домен за допомогою site:.",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "4images адмін-панель",
+      "description": "Пошук адміністративних панелей 4images Gallery",
+      "template": "\"4images Administration Control Panel\"",
+      "hint": "Додайте додаткові ключові слова для звуження результатів",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "Вхід в систему",
+      "description": "Знайти сторінки з формами входу.",
+      "template": "inurl:login intext:admin",
+      "hint": "Задайте специфічний домен для звуження пошуку.",
+      "tags": [ "authentication", "admin" ]
+    },
+    {
+      "name": "Адмінка",
+      "description": "Знайти панелі адміністрування.",
+      "template": "inurl:admin panel",
+      "hint": "Додайте специфічний параметр для кращих результатів.",
+      "tags": [ "admin" ]
+    },
+    {
+      "name": "Адмін панель Joomla",
+      "description": "Знайти адмін-панелі Joomla.",
+      "template": "inurl:administrator/index.php",
+      "hint": "Уточніть пошук за допомогою site:.",
+      "tags": [ "cms", "admin" ]
+    },
+    {
+      "name": "WordPress Admin",
+      "description": "Знайти адмін-панелі WordPress.",
+      "template": "inurl:wp-admin intitle:login",
+      "hint": "Додайте специфічний домен для пошуку.",
+      "tags": [ "cms", "admin" ]
+    },
+    {
+      "name": "Webmin",
+      "description": "Знайти панелі адміністрування Webmin.",
+      "template": "intitle:\"Webmin Login\"",
+      "hint": "Використовуйте site: для уточнення.",
+      "tags": [ "cms", "admin" ]
+    },
+    {
+      "name": "VestaCP",
+      "description": "Знайти панелі адміністрування VestaCP.",
+      "template": "intitle:\"Vesta Control Panel\"",
+      "hint": "Додайте фільтри за допомогою site: або інших параметрів.",
+      "tags": [ "cms", "admin" ]
+    }
+  ]
+}

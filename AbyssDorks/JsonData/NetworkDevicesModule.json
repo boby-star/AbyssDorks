@@ -1,0 +1,165 @@
+{
+  "templates": [
+    {
+      "name": "Cisco Панелі",
+      "description": "Знайти панелі управління Cisco пристроями.",
+      "template": "intitle:\"Cisco Router\" inurl:main",
+      "hint": "Вкажіть модель пристрою або IP-адресу.",
+      "tags": [ "network", "admin" ]
+    },
+    {
+      "name": "Відкриті HP-принтери",
+      "description": "Пошук HP-принтерів, які відкриті в мережі.",
+      "template": "inurl:hp/device/this.LCDispatcher?nav=hp.Print",
+      "hint": "Уточність запит через домени",
+      "tags": [ "network", "printers" ]
+    },
+    {
+      "name": "Cisco WebVPN Login",
+      "description": "Пошук сторінок входу Cisco WebVPN.",
+      "template": "inurl:webvpn.html \"login\" \"Please enter your\"",
+      "hint": "Корисно для аналізу мережевих пристроїв Cisco.",
+      "tags": [ "cisco", "network", "vpn" ]
+    },
+    {
+      "name": "Мережеві камери",
+      "description": "Пошук відкритих IP-камер.",
+      "template": "inurl:/view.shtml intitle:\"Network Camera\"",
+      "hint": "Додайте виробника або модель.",
+      "tags": [ "network", "cameras" ]
+    },
+    {
+      "name": "Мережеві принтери",
+      "description": "Знайти публічні інтерфейси принтерів.",
+      "template": "inurl:hp/device/ intitle:\"HP JetDirect\"",
+      "hint": "Уточніть бренд або модель принтера.",
+      "tags": [ "network", "printers" ]
+    },
+    {
+      "name": "FTP Сервери",
+      "description": "Пошук публічно доступних FTP серверів.",
+      "template": "inurl:ftp:// intext:\"Index of\"",
+      "hint": "Додайте ключове слово для фільтрації файлів.",
+      "tags": [ "network", "ftp" ]
+    },
+    {
+      "name": "VPN Консолі",
+      "description": "Знайти сторінки входу до VPN.",
+      "template": "inurl:/remote/login intitle:\"VPN Login\"",
+      "hint": "Додайте назву VPN-сервісу.",
+      "tags": [ "network", "vpn" ]
+    },
+    {
+      "name": "NGINX Сервери",
+      "description": "Визначити відкриті NGINX сервери.",
+      "template": "intitle:\"Welcome to nginx!\"",
+      "hint": "Вкажіть географічний регіон у запиті.",
+      "tags": [ "network", "servers" ]
+    },
+    {
+      "name": "Конфігурації маршрутизаторів",
+      "description": "Пошук конфігураційних файлів маршрутизаторів.",
+      "template": "filetype:cfg intext:\"username\" intext:\"password\"",
+      "hint": "Вкажіть бренд або IP-адресу.",
+      "tags": [ "network", "configurations" ]
+    },
+    {
+      "name": "IoT Пристрої",
+      "description": "Пошук публічно доступних IoT пристроїв.",
+      "template": "inurl:/setup intitle:\"IoT Device\"",
+      "hint": "Уточніть пристрій або модель.",
+      "tags": [ "iot", "network" ]
+    },
+    {
+      "name": "Мережеві точки доступу",
+      "description": "Знайти відкриті точки доступу Wi-Fi.",
+      "template": "inurl:/wireless intitle:\"Access Point\"",
+      "hint": "Вкажіть бренд або параметри Wi-Fi.",
+      "tags": [ "network", "wifi" ]
+    },
+    {
+      "name": "Сторінки SNMP",
+      "description": "Пошук відкритих SNMP сторінок.",
+      "template": "inurl:/snmp intitle:\"SNMP\"",
+      "hint": "Додайте версію або тип пристрою.",
+      "tags": [ "network", "snmp" ]
+    },
+    {
+      "name": "IP-Телефони",
+      "description": "Знайти відкриті інтерфейси IP-телефонів.",
+      "template": "intitle:\"IP Phone\" inurl:/cgi-bin/",
+      "hint": "Вкажіть виробника або модель телефону.",
+      "tags": [ "network", "telephony" ]
+    },
+    {
+      "name": "UPnP Пристрої",
+      "description": "Пошук відкритих UPnP пристроїв.",
+      "template": "inurl:/upnp/control intitle:\"UPnP\"",
+      "hint": "Додайте виробника пристрою.",
+      "tags": [ "network", "upnp" ]
+    },
+    {
+      "name": "Старі сертифікати SSL",
+      "description": "Пошук пристроїв із застарілими SSL-сертифікатами.",
+      "template": "ssl.cert.expired:true",
+      "hint": "Додайте тип пристрою або регіон.",
+      "tags": [ "network", "ssl" ]
+    },
+    {
+      "name": "SSH Сервери",
+      "description": "Визначити відкриті SSH сервери.",
+      "template": "inurl:/ssh intitle:\"SSH Server\"",
+      "hint": "Додайте IP-адресу або порт.",
+      "tags": [ "network", "ssh" ]
+    },
+    {
+      "name": "Telnet Консолі",
+      "description": "Пошук відкритих Telnet консолей.",
+      "template": "inurl:/telnet intitle:\"Telnet Login\"",
+      "hint": "Уточніть порт або IP-адресу.",
+      "tags": [ "network", "telnet" ]
+    },
+    {
+      "name": "FTP конфігурації",
+      "description": "Пошук конфігураційних файлів ProFTPD у відкритих директоріях",
+      "template": "intext:\"proftpd.conf\" \"index of\" ",
+      "hint": "Додайте домен або ключові слова для уточнення",
+      "tags": [ "ftp", "configurations", "network" ]
+    },
+    {
+      "name": "LDAP конфігурації",
+      "description": "Пошук відкритих конфігураційних директорій OpenLDAP",
+      "template": "intitle:index of /etc/openldap",
+      "hint": "Додайте домен або уточніть шлях до конфігурації",
+      "tags": [ "configurations", "network" ]
+    },
+    {
+      "name": "Брандмауери",
+      "description": "Пошук сторінок входу до брандмауерів.",
+      "template": "inurl:/firewall intitle:\"Login\"",
+      "hint": "Вкажіть тип брандмауера або бренд.",
+      "tags": [ "network", "firewalls" ]
+    },
+    {
+      "name": "Динамічні DNS",
+      "description": "Пошук пристроїв із динамічними DNS.",
+      "template": "inurl:/dyndns intitle:\"Dynamic DNS\"",
+      "hint": "Додайте провайдера або регіон.",
+      "tags": [ "network", "dns" ]
+    },
+    {
+      "name": "Резервні копії пристроїв",
+      "description": "Знайти файли резервних копій пристроїв.",
+      "template": "filetype:bak intext:\"backup\" intext:\"device\"",
+      "hint": "Додайте тип пристрою або дату.",
+      "tags": [ "network", "backup" ]
+    },
+    {
+      "name": "Звітності систем моніторингу",
+      "description": "Пошук звітів із систем моніторингу мережі.",
+      "template": "filetype:pdf intext:\"Monitoring Report\"",
+      "hint": "Уточніть назву системи моніторингу.",
+      "tags": [ "network", "monitoring" ]
+    }
+  ]
+}

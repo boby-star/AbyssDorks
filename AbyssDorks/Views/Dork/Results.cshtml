@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Результати";
+}
+
+<h1 style="text-align: center;">Результати пошуку</h1>
+
+<p style="text-align: center;">Запит <strong>@ViewBag.Query</strong></p>
+
+<table style="width: 80%; margin: 0 auto; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Назва</th>
+
+            <th style="border: 1px solid #ddd; padding: 8px;">Посилання</th>
+
+            <th style="border: 1px solid #ddd; padding: 8px;">Опис</th>
+        </tr>
+    </thead>
+    <tbody id="resultsTableBody"></tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const query = decodeURIComponent('@ViewBag.Query');
+
+            $.post("/Dork/ExecuteSearch", { query })
+                .done(results => {
+                    console.log(results);
+                    const tableBody = $("#resultsTableBody");
+                    tableBody.empty();
+
+                    if (results.items && Array.isArray(results.items)) {
+                        results.items.forEach(result => {
+                            const row = `
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.title || "Без назви"}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">
+                                        <a href="${result.url}" target="_blank">${result.url}</a>
+                                    </td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.snippet || "Опис відсутній"}</td>
+                                </tr>
+                            `;
+                            tableBody.append(row);
+                        });
+                    } else {
+                        console.error("Неправильний формат відповіді:", results);
+                        tableBody.html("<tr><td colspan='3'>Результати не знайдено або сталася помилка.</td></tr>");
+                    }
+                })
+                .fail(err => {
+                        console.error(err);
+                        const tableBody = $("#resultsTableBody");
+                        tableBody.html("<tr><td colspan='3'>Результати не знайдено або сталася помилка.</td></tr>");
+                        alert("Помилка отримання результатів");
+                });
+        })
+    </script>
+}

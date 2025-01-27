@@ -1,0 +1,151 @@
+{
+  "templates": [
+    {
+      "name": "SQL дампи",
+      "description": "Пошук SQL-файлів з базами даних.",
+      "template": "filetype:sql intext:\"insert into\"",
+      "hint": "Додайте специфічні таблиці або сайти.",
+      "tags": [ "sql", "databases" ]
+    },
+    {
+      "name": "Лог-файли",
+      "description": "Пошук логів із серверів або додатків.",
+      "template": "filetype:log intext:\"error\"",
+      "hint": "Уточніть проблему або сервіс.",
+      "tags": [ "logs", "debugging" ]
+    },
+    {
+      "name": "Конфігураційні файли",
+      "description": "Знайти конфігураційні файли.",
+      "template": "filetype:conf inurl:\"config\"",
+      "hint": "Вкажіть сервер або сервіс.",
+      "tags": [ "configuration", "files" ]
+    },
+    {
+      "name": "Резервні копії",
+      "description": "Пошук резервних копій файлів.",
+      "template": "filetype:bak inurl:\"backup\"",
+      "hint": "Уточніть сайт або тип файлу.",
+      "tags": [ "backup", "files" ]
+    },
+    {
+      "name": "Паролі у файлах",
+      "description": "Знайти файли із зашифрованими паролями.",
+      "template": "filetype:txt intext:\"password\"",
+      "hint": "Уточніть формат або тип файлу.",
+      "tags": [ "files" ]
+    },
+    {
+      "name": "Адміністративні інструменти",
+      "description": "Пошук .ini-файлів з паролями.",
+      "template": "filetype:ini intext:\"password\"",
+      "hint": "Вкажіть конкретний сервіс для пошуку.",
+      "tags": [ "admin", "files" ]
+    },
+    {
+      "name": "Персональні файли",
+      "description": "Знайти персональні документи.",
+      "template": "filetype:docx intext:\"resume\"",
+      "hint": "Уточніть професію або регіон.",
+      "tags": [ "documents" ]
+    },
+    {
+      "name": "Сертифікати",
+      "description": "Пошук файлів із SSL-сертифікатами.",
+      "template": "filetype:pem intext:\"private key\"",
+      "hint": "Додайте конкретний домен.",
+      "tags": [ "certificates", "security" ]
+    },
+    {
+      "name": "FTP-файли",
+      "description": "Пошук FTP-конфігурацій.",
+      "template": "filetype:txt intext:\"ftp://\"",
+      "hint": "Додайте URL-адресу або домен.",
+      "tags": [ "ftp", "files" ]
+    },
+    {
+      "name": "Дампи PHPMyAdmin",
+      "description": "Пошук дампів PHPMyAdmin.",
+      "template": "filetype:sql intext:\"phpMyAdmin MySQL-Dump\"",
+      "hint": "Додайте назву бази або таблиці.",
+      "tags": [ "admin", "databases" ]
+    },
+    {
+      "name": "Бази даних у файлах",
+      "description": "Пошук баз даних у файлах Excel на освітніх доменах",
+      "template": "site:.edu filetype:xls \"root\" database",
+      "hint": "Замініть site:.edu на інші домени для ширшого пошуку",
+      "tags": ["files", "databases"]
+    },
+    {
+      "name": "Звіти Nessus",
+      "description": "Пошук файлів із звітами Nessus.",
+      "template": "filetype:pdf intext:\"Nessus Scan Report\"",
+      "hint": "Додайте конкретну IP-адресу або домен.",
+      "tags": [ "nessus", "reports" ]
+    },
+    {
+      "name": "Адміністративні лог-файли",
+      "description": "Пошук логів із паролями або помилками.",
+      "template": "filetype:log intext:\"admin\"",
+      "hint": "Додайте назву додатку.",
+      "tags": [ "admin", "logs" ]
+    },
+    {
+      "name": "Файли налаштувань FTP",
+      "description": "Знайти FTP-конфігурації.",
+      "template": "filetype:xml intext:\"ftp\"",
+      "hint": "Вкажіть програму або URL.",
+      "tags": [ "ftp", "configuration" ]
+    },
+    {
+      "name": "Дані для бекапу",
+      "description": "Знайти файли для бекапів.",
+      "template": "filetype:tar.gz inurl:\"backup\"",
+      "hint": "Уточніть тип контенту.",
+      "tags": [ "backup", "files" ]
+    },
+    {
+      "name": "Конфігурація серверів",
+      "description": "Пошук файлів із серверними налаштуваннями.",
+      "template": "filetype:conf intext:\"server\"",
+      "hint": "Уточніть тип сервера.",
+      "tags": [ "server", "configuration" ]
+    },
+    {
+      "name": "Медичні файли",
+      "description": "Пошук медичних документів.",
+      "template": "filetype:pdf intext:\"medical record\"",
+      "hint": "Уточніть тип файлу або домен.",
+      "tags": [ "documents" ]
+    },
+    {
+      "name": "Файли тіньових паролів",
+      "description": "Знайти файли з тіньовими паролями.",
+      "template": "filetype:shadow inurl:\"/etc/\"",
+      "hint": "Вкажіть тип паролів для уточнення.",
+      "tags": [ "passwords" ]
+    },
+    {
+      "name": "Резюме",
+      "description": "Знайти файли з резюме.",
+      "template": "filetype:pdf intext:\"curriculum vitae\"",
+      "hint": "Додайте конкретну професію.",
+      "tags": [ "resume", "documents" ]
+    },
+    {
+      "name": "Звіти про вразливості",
+      "description": "Пошук файлів із звітами про уразливості.",
+      "template": "filetype:pdf intext:\"vulnerability report\"",
+      "hint": "Уточніть тип звіту або компанію.",
+      "tags": [ "vulnerabilities", "reports" ]
+    },
+    {
+      "name": "Історія SQL-запитів",
+      "description": "Пошук історій запитів до бази даних.",
+      "template": "filetype:log intext:\"SQL\"",
+      "hint": "Уточніть базу даних або сервер.",
+      "tags": [ "sql", "logs" ]
+    }
+  ]
+}
