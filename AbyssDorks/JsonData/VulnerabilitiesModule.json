@@ -29,6 +29,49 @@
       "tags": [ "configurations", "access", "security" ]
     },
     {
+      "name": "Відкриті Amazon S3 бакети",
+      "description": "Індексовані S3-бакети, які дозволяють публічний доступ до файлів.",
+      "template": "intitle:\"index of\" \"s3.amazonaws.com\"",
+      "hint": "Можна додати inurl:/backup/ або /logs/ для конкретного типу вмісту.",
+      "tags": [ "s3", "cloud", "bucket", "leak" ]
+    },
+    {
+      "name": "S3 багатофайлові витоки",
+      "description": "Сторінки з переліченими файлами в Amazon бакеті — потенційний витік документації, логів або резервних копій.",
+      "template": "site:s3.amazonaws.com ext:pdf OR ext:log OR ext:zip",
+      "hint": "Працює добре для пошуку документації або логів.",
+      "tags": [ "s3", "exposure", "backup", "cloud" ]
+    },
+    {
+      "name": "Next.js статичні ресурси",
+      "description": "Виявлення сайтів, які працюють на Next.js — можуть бути потенційно уразливими.",
+      "template": "inurl:_next/static OR inurl:_next/data",
+      "hint": "Можна використовувати разом із site:.com для конкретного ринку.",
+      "tags": [ "nextjs", "web", "frameworks", "cve" ]
+    },
+    {
+      "name": "Next.js Middleware Pages",
+      "description": "Пошук публічних сторінок, де ймовірно використовується middleware (і є ризик обходу).",
+      "template": "inurl:/dashboard/ OR inurl:/admin/ intitle:\"Next.js\"",
+      "hint": "Корисно для розвідки CVE-2025-29927.",
+      "tags": [ "nextjs", "middleware", "authorization", "security" ]
+    },
+    {
+      "name": "API ключі в GitHub-файлах",
+      "description": "Пошук файлів з API-ключами, залитими у відкриті репозиторії GitHub.",
+      "template": "site:github.com intext:\"api_key\" OR intext:\"secret_key\"",
+      "hint": "Можна деталізувати: intext:\"firebaseConfig\" або intext:\"AWS_SECRET\".",
+      "tags": [ "api-key", "leaks", "github", "credentials" ]
+    },
+    {
+      "name": "API ключі в конфігураційних файлах",
+      "description": "Індексовані конфігураційні файли, які можуть містити ключі доступу до сервісів.",
+      "template": "ext:env | ext:json | ext:yaml intext:\"API_KEY=\" OR intext:\"secret=\"",
+      "hint": "Працює особливо добре при пошуку у вузькому домені.",
+      "tags": [ "secrets", "api", "configuration" ]
+    },
+
+    {
       "name": "Конфігураційні файли",
       "description": "Переважно знаходить репозиторії з конфігураційними файлами.",
       "template": "inurl:admin.cfg | inurl:setup.cfg | inurl:config.cfg",

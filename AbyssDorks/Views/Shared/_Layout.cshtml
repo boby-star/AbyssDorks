@@ -10,53 +10,62 @@
     <style>
         body {
             display: flex;
-            background-color: #1a1a2e;
-            color: #e0e0e0;
+            background-color: #ffffff;
+            color: #222222;
         }
+
         #sidebar {
             width: 250px;
-            background-color: #2d2d44;
+            background-color: #f0f0f0;
             height: 100vh;
             padding: 20px;
             position: fixed;
             top: 0;
             left: 0;
         }
+
         #sidebar a {
-            color: #b197fc;
+            color: #0056b3;
             display: block;
             margin-bottom: 10px;
             text-decoration: none;
         }
+
         #sidebar a:hover {
-            color: #ffffff;
+            color: #000000;
         }
+
         #content {
             margin-left: 250px;
             flex-grow: 1;
             padding: 20px;
         }
+
         header {
             text-align: center;
-            background-color: #2d2d44;
-            color: #b197fc;
+            background-color: #eaeaea;
+            color: #333;
             padding: 10px;
         }
+
         h2, h3 {
-            color: #b197fc;
+            color: #0056b3;
         }
+
         button {
-            background-color: #b197fc;
+            background-color: #007bff;
             color: #fff;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
         }
+
         button:hover {
-            background-color: #8a63d2;
+            background-color: #0056b3;
         }
+
         #graphContainer {
-            background-color: #2d2d44;
+            background-color: #f9f9f9;
             padding: 10px;
             border-radius: 10px;
             margin-top: 20px;
@@ -68,6 +77,7 @@
         <img src="/octopus.png" alt="Abyss Scan" class="me-2" style="height: 160px" />
         <a asp-controller="Dork"  style="margin-top: 20px;" asp-action="Index">Пошук</a>
         <a asp-controller="Dork" asp-action="SetCredentials">Налаштування</a>
+        <a asp-controller="Dork" asp-action="Guide">Як почати роботу з додатком</a>
     </div>
     <div id="content">
         <header style="border-radius: 20px">

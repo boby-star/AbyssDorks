@@ -44,4 +44,27 @@
   <ItemGroup>
     <Folder Include="BayesClassifier\LearningData\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="BayesClassifier\LearningData\data_AdminPanels.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_FilesDocument.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_Metadata.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_NetworkDevices.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_Vulnerabilities.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_WebPage.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BayesClassifier\LearningData\data_WebServices.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

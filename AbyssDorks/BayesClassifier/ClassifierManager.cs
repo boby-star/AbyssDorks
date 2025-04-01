@@ -7,6 +7,7 @@ namespace AbyssDorks.BayesClassifier
     {
         readonly ValidationService _validationService;
         private readonly Dictionary<string, IClassifier> _classifiers;
+        private readonly string _learningDataPath = Path.Combine(AppContext.BaseDirectory, "BayesClassifier", "LearningData");
 
         public ClassifierManager(ValidationService validationService)
         {
@@ -14,49 +15,49 @@ namespace AbyssDorks.BayesClassifier
             _classifiers = new Dictionary<string, IClassifier>();
 
             // Завантаження навчальних даних для модуля AdminPanelsModule
-            string adminDataFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_AdminPanels.txt");
+            string adminDataFile = Path.Combine(_learningDataPath, "data_AdminPanels.txt");
             var naiveBayesAdmin = new NaiveBayesClassifier(_validationService);
             List<Models.Document> adminDocs = ReadTrainingData(adminDataFile);     
             naiveBayesAdmin.Train(adminDocs);
             _classifiers["AdminPanelsModule"] = new AdminPanelsModuleClassifier(naiveBayesAdmin, _validationService);
 
             // Завантаження навчальних даних для модуля FilesDocumentModule
-            string fileDocDataFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_FilesDocument.txt");
+            string fileDocDataFile = Path.Combine(_learningDataPath, "data_FilesDocument.txt");
             List<Models.Document> fileDocs = ReadTrainingData(fileDocDataFile);
             var naiveBayesFiles = new NaiveBayesClassifier(_validationService);
             naiveBayesFiles.Train(fileDocs);
             _classifiers["FilesDocumentModule"] = new AdminPanelsModuleClassifier(naiveBayesFiles, _validationService);
 
             // Завантаження навчальних даних для модуля MetadataModule
-            string metaDataFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_Metadata.txt");
+            string metaDataFile = Path.Combine(_learningDataPath, "data_Metadata.txt");
             List<Models.Document> metaDocs = ReadTrainingData(metaDataFile);
             var naiveBayesMetaData = new NaiveBayesClassifier(_validationService);
             naiveBayesMetaData.Train(metaDocs);
             _classifiers["MetadataModule"] = new AdminPanelsModuleClassifier(naiveBayesMetaData, _validationService);
 
             // Завантаження навчальних даних для модуля NetworkDevicesModule
-            string networkDevicesFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_NetworkDevices.txt");
+            string networkDevicesFile = Path.Combine(_learningDataPath, "data_NetworkDevices.txt");
             List<Models.Document> networkDocs = ReadTrainingData(networkDevicesFile);
             var naiveBayesNetwork = new NaiveBayesClassifier(_validationService);
             naiveBayesNetwork.Train(networkDocs);
             _classifiers["NetworkDevicesModule"] = new AdminPanelsModuleClassifier(naiveBayesNetwork, _validationService);
 
             // Завантаження навчальних даних для модуля VulnerabilitiesModule
-            string vulnFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_Vulnerabilities.txt");
+            string vulnFile = Path.Combine(_learningDataPath, "data_Vulnerabilities.txt");
             List<Models.Document> vulnDocs = ReadTrainingData(vulnFile);
             var naiveBayesVuln = new NaiveBayesClassifier(_validationService);
             naiveBayesVuln.Train(vulnDocs);
             _classifiers["VulnerabilitiesModule"] = new AdminPanelsModuleClassifier(naiveBayesVuln, _validationService);
 
             // Завантаження навчальних даних для модуля WebPageModule
-            string webPageFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_WebPage.txt");
+            string webPageFile = Path.Combine(_learningDataPath, "data_WebPage.txt");
             List<Models.Document> webPageDocs = ReadTrainingData(webPageFile);
             var naiveBayesWebPage = new NaiveBayesClassifier(_validationService);
             naiveBayesWebPage.Train(webPageDocs);
             _classifiers["WebPageModule"] = new AdminPanelsModuleClassifier(naiveBayesWebPage, _validationService);
 
             // Завантаження навчальних даних для модуля WebServicesModule
-            string webSerFile = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\BayesClassifier\\LearningData\\data_WebServices.txt");
+            string webSerFile = Path.Combine(_learningDataPath, "data_WebServices.txt");
             List<Models.Document> webSerDocs = ReadTrainingData(webSerFile);
             var naiveBayesWebSer = new NaiveBayesClassifier(_validationService);
             naiveBayesVuln.Train(webSerDocs);

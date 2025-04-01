@@ -1,0 +1,108 @@
+﻿@{
+    ViewData["Title"] = "Guide";
+}
+
+<div class="container mt-4">
+    <h2>Налаштування Google Custom Search для нашої системи</h2>
+    <p>
+        Перш ніж почати роботу з нашим додатком, потрібно виконати кілька кроків у сервісах Google.
+        Це дозволить вам отримати 2 обов’язкові параметри:
+    </p>
+    <ul>
+        <li><strong>Search Engine ID (cx)</strong></li>
+        <li><strong>API Key</strong></li>
+    </ul>
+
+    <hr />
+
+    <h3>1. Створення власної Search Engine (щоб отримати cx)</h3>
+    <ol>
+        <li>
+            Перейдіть за посиланням:
+            <a href="https://programmablesearchengine.google.com/controlpanel/create" target="_blank">
+                https://programmablesearchengine.google.com/controlpanel/create
+            </a>.
+        </li>
+        <li>
+            У полі <em>«Назва пошукової системи»</em> (або «Name of the search engine»)
+            введіть довільну назву (наприклад, <em>"My Custom Engine"</em>).
+        </li>
+        <li>
+            Виберіть, на яких сайтах система має виконувати пошук:
+            можна вказати конкретні домени або поставити <em>«Пошук у всьому інтернеті»</em>.
+            Якщо не впевнені — оберіть <strong>пошук по всьому інтернету</strong>.
+        </li>
+        <li>Зніміть або залиште потрібні налаштування для «Пошуку зображень» і «Безпечного пошуку».</li>
+        <li>Підтвердьте, що ви не робот (reCAPTCHA), потім натисніть <strong>«Створити»</strong>.</li>
+        <li>
+            У результаті з’явиться сторінка з вашим пошуковим рушієм.
+            Знайдіть там <strong>ID пошукової системи (cx)</strong>, зазвичай під заголовком <em>«Search engine ID»</em>.
+        </li>
+    </ol>
+    <p><strong>Збережіть свій «cx»</strong> — його знадобиться вводити в нашому додатку.</p>
+
+    <hr />
+
+    <h3>2. Створення Google API Key</h3>
+    <ol>
+        <li>
+            Перейдіть за посиланням:
+            <a href="https://console.cloud.google.com/apis/credentials/key" target="_blank">
+                https://console.cloud.google.com/apis/credentials/key
+            </a>.
+            Якщо посилання не працює, зайдіть у <strong>Google Cloud Console</strong> &raquo;
+            <em>APIs &amp; Services</em> &raquo; <em>Credentials</em>.
+        </li>
+        <li>Виберіть <strong>«Create credentials» &raquo; «API key»</strong>.</li>
+        <li>
+            З’явиться вікно з вашим новим API-ключем. Ви можете налаштувати обмеження доступу
+            (наприклад, прив’язка за IP), якщо хочете підвищити безпеку.
+        </li>
+        <li><strong>Скопіюйте цей ключ</strong> (довгий ряд символів) і збережіть його у безпечному місці.</li>
+    </ol>
+    <p>
+        <strong>API Key</strong> (наприклад <em>AIzaSyD0S---</em>) використовується
+        разом із «cx» для виконання запитів у нашому продукті.
+    </p>
+
+    <hr />
+
+    <h3>3. Вставлення ключів у наш додаток</h3>
+    <p>
+        У головному вікні програми ви побачите форму для введення <strong>Google API Key</strong>
+        і <strong>Search Engine ID</strong>. Введіть туди значення, які ви отримали вище,
+        і натисніть <em>«Зберегти»</em>.
+    </p>
+
+    <h4>Приклад введення:</h4>
+    <ul>
+        <li>API Key: <code>AIzaSyD0S...</code></li>
+        <li>Search Engine ID (cx): <code>0123456789abcdef:xyz123</code></li>
+    </ul>
+
+    <hr />
+
+    <h3>4. Поради та важливі моменти</h3>
+    <ul>
+        <li>
+            Якщо ви бажаєте обмежити доступ до свого API-ключа,
+            рекомендується використовувати <em>Application restrictions</em> (Websites, IP тощо).
+        </li>
+        <li>
+            Стежте за <strong>лімітом запитів</strong>, оскільки безкоштовна квота не безмежна.
+            Зазвичай ~100 запитів на добу.
+        </li>
+        <li>
+            Для перевірки, що все працює, спробуйте зробити найпростіший запит у полі пошуку (наприклад, <em>"test"</em>).
+            Якщо бачите результати — налаштування виконані успішно!
+        </li>
+    </ul>
+
+    <hr />
+
+    <h4>Все готово!</h4>
+    <p>
+        Тепер, маючи Google API Key та Search Engine ID, ви можете повноцінно користуватися нашим
+        застосунком для автоматизованої генерації Google Dork-запитів.
+    </p>
+</div>

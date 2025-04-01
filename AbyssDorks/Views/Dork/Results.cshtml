@@ -20,7 +20,6 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            // Маппінг кодів модулів на українські назви
             const moduleMapping = {
                 "AdminPanelsModule": "Адмін-панелі",
                 "EmailSearchModule": "Пошук електронних листів",
@@ -37,7 +36,6 @@
                 url: "/Dork/ExecuteSearch",
                 method: "POST",
                 contentType: "application/json",
-                // Зчитуємо збережені запити з sessionStorage, які є JSON-масивом об'єктів QueryModulePair
                 data: JSON.stringify(JSON.parse(sessionStorage.getItem("savedQueries") || "[]")),
                 success: function (data) {
                     const tableBody = $("#resultsTableBody");
@@ -45,7 +43,6 @@
                     let results = data.Items || data.items;
                     if (results && Array.isArray(results)) {
                         results.forEach(function (result) {
-                            // Використовуємо fallback для PredictedLabel
                             const predictedLabel = result.PredictedLabel || result.predictedLabel || "";
                             let labelStyle = "";
                             if (predictedLabel === "Critically") {
@@ -55,7 +52,6 @@
                             } else if (predictedLabel === "Не оцінюється") {
                                 labelStyle = "color: grey; font-style: italic; font-family: 'Courier New', monospace;";
                             }
-                            // Використовуємо fallback для модуля
                             const moduleValue = result.Module || result.module || "Невідомий";
                             const moduleName = moduleMapping[moduleValue] || moduleValue;
                             const row = `

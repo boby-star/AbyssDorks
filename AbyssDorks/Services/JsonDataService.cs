@@ -5,7 +5,7 @@ namespace AbyssDorks.Services
 {
     public class JsonDataService
     {
-        private readonly string _basePath = Path.Combine("E:\\AbyssDorks\\AbyssDorks\\AbyssDorks\\JsonData");
+        private readonly string _basePath = Path.Combine(AppContext.BaseDirectory, "JsonData");
 
         public Module LoadModule(string moduleName)
         {

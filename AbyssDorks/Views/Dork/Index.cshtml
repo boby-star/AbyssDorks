@@ -43,7 +43,7 @@
     </div>
     <br>
     <button id="executeSearch" type="button" style="padding: 15px 30px; border-radius: 20px; font-size: 20px;">
-        Розширений пошук
+        Почати пошук
     </button>
 </div>
 
@@ -235,10 +235,10 @@
 
             $("#savedQueriesThumbnail").hover(
                 function () {
-                    $("#savedQueriesPopup").fadeIn(500);
+                    $("#savedQueriesPopup").fadeIn(200);
                 },
                 function () {
-                    $("#savedQueriesPopup").fadeOut(500);
+                    $("#savedQueriesPopup").fadeOut(1000);
                 }
             );
 
@@ -257,42 +257,42 @@
                 updateSavedQueriesDisplay();
             });
 
-            if (savedQueries.length > 0) {
-                $.ajax({
-                    url: "/Dork/ExecuteSearch",
-                    method: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify(savedQueries),
-                    success: function (data) {
-                        $("#results-section").show();
-                        const tableBody = $("#resultsTableBody");
-                        tableBody.empty();
+            // if (savedQueries.length > 0) {
+            //     $.ajax({
+            //         url: "/Dork/ExecuteSearch",
+            //         method: "POST",
+            //         contentType: "application/json",
+            //         data: JSON.stringify(savedQueries),
+            //         success: function (data) {
+            //             $("#results-section").show();
+            //             const tableBody = $("#resultsTableBody");
+            //             tableBody.empty();
 
-                        if (data.Items && Array.isArray(data.Items)) {
-                            data.Items.forEach(function (result) {
-                                const row = `
-                                    <tr>
-                                        <td style="border: 1px solid #ddd; padding: 8px;">${result.Title || "Без назви"}</td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;">
-                                            <a href="${result.Link}" target="_blank">${result.Link}</a>
-                                        </td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;">${result.Snippet || "Опис відсутній"}</td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;">${result.Module || ""}</td>
-                                        <td style="border: 1px solid #ddd; padding: 8px;">${result.PredictedLabel || ""}</td>
-                                    </tr>
-                                `;
-                                tableBody.append(row);
-                            });
-                        } else {
-                            tableBody.html("<tr><td colspan='5'>Результати не знайдено або сталася помилка.</td></tr>");
-                        }
-                    },
-                    error: function (err) {
-                        console.error("Помилка отримання результатів:", err);
-                        alert("Помилка отримання результатів");
-                    }
-                });
-            }
+            //             if (data.Items && Array.isArray(data.Items)) {
+            //                 data.Items.forEach(function (result) {
+            //                     const row = `
+            //                         <tr>
+            //                             <td style="border: 1px solid #ddd; padding: 8px;">${result.Title || "Без назви"}</td>
+            //                             <td style="border: 1px solid #ddd; padding: 8px;">
+            //                                 <a href="${result.Link}" target="_blank">${result.Link}</a>
+            //                             </td>
+            //                             <td style="border: 1px solid #ddd; padding: 8px;">${result.Snippet || "Опис відсутній"}</td>
+            //                             <td style="border: 1px solid #ddd; padding: 8px;">${result.Module || ""}</td>
+            //                             <td style="border: 1px solid #ddd; padding: 8px;">${result.PredictedLabel || ""}</td>
+            //                         </tr>
+            //                     `;
+            //                     tableBody.append(row);
+            //                 });
+            //             } else {
+            //                 tableBody.html("<tr><td colspan='5'>Результати не знайдено або сталася помилка.</td></tr>");
+            //             }
+            //         },
+            //         error: function (err) {
+            //             console.error("Помилка отримання результатів:", err);
+            //             alert("Помилка отримання результатів");
+            //         }
+            //     });
+            // }
 
             $("#operatorSelect").on("change", function () {
                 const selectedOperator = $(this).val();

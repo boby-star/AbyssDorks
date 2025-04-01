@@ -56,6 +56,11 @@ namespace AbyssDorks.Controllers
             return View();
         }
 
+        public IActionResult Guide()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SaveCredentials(string apiKey, string cx)
         {
