@@ -1,19 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Результати";
+    ViewData["Title"] = "Результати пошуку";
 }
 
 <h1 style="text-align: center;">Результати пошуку</h1>
-
-<p style="text-align: center;">Запит <strong>@ViewBag.Query</strong></p>
 
 <table style="width: 80%; margin: 0 auto; border-collapse: collapse;">
     <thead>
         <tr>
             <th style="border: 1px solid #ddd; padding: 8px;">Назва</th>
-
             <th style="border: 1px solid #ddd; padding: 8px;">Посилання</th>
-
             <th style="border: 1px solid #ddd; padding: 8px;">Опис</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Модуль</th>
+            <th style="border: 1px solid #ddd; padding: 8px;">Оцінка</th>
         </tr>
     </thead>
     <tbody id="resultsTableBody"></tbody>
@@ -22,38 +20,67 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            const query = decodeURIComponent('@ViewBag.Query');
+            // Маппінг кодів модулів на українські назви
+            const moduleMapping = {
+                "AdminPanelsModule": "Адмін-панелі",
+                "EmailSearchModule": "Пошук електронних листів",
+                "FilesDocumentModule": "Документи та файли",
+                "MetadataModule": "Метадані",
+                "NetworkDevicesModule": "Мережеві пристрої",
+                "PeopleSearchModule": "Пошук людей",
+                "VulnerabilitiesModule": "Вразливості",
+                "WebPageModule": "Веб-сторінки",
+                "WebServicesModule": "Веб-сервіси"
+            };
 
-            $.post("/Dork/ExecuteSearch", { query })
-                .done(results => {
-                    console.log(results);
+            $.ajax({
+                url: "/Dork/ExecuteSearch",
+                method: "POST",
+                contentType: "application/json",
+                // Зчитуємо збережені запити з sessionStorage, які є JSON-масивом об'єктів QueryModulePair
+                data: JSON.stringify(JSON.parse(sessionStorage.getItem("savedQueries") || "[]")),
+                success: function (data) {
                     const tableBody = $("#resultsTableBody");
                     tableBody.empty();
-
-                    if (results.items && Array.isArray(results.items)) {
-                        results.items.forEach(result => {
+                    let results = data.Items || data.items;
+                    if (results && Array.isArray(results)) {
+                        results.forEach(function (result) {
+                            // Використовуємо fallback для PredictedLabel
+                            const predictedLabel = result.PredictedLabel || result.predictedLabel || "";
+                            let labelStyle = "";
+                            if (predictedLabel === "Critically") {
+                                labelStyle = "color: red; font-weight: bold; font-family: 'Arial Black', sans-serif;";
+                            } else if (predictedLabel === "Information") {
+                                labelStyle = "color: blue; font-weight: bold; font-family: 'Arial Black', sans-serif;";
+                            } else if (predictedLabel === "Не оцінюється") {
+                                labelStyle = "color: grey; font-style: italic; font-family: 'Courier New', monospace;";
+                            }
+                            // Використовуємо fallback для модуля
+                            const moduleValue = result.Module || result.module || "Невідомий";
+                            const moduleName = moduleMapping[moduleValue] || moduleValue;
                             const row = `
                                 <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.title || "Без назви"}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.Title || result.title || "Без назви"}</td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">
-                                        <a href="${result.url}" target="_blank">${result.url}</a>
+                                        <a href="${result.Link || result.url}" target="_blank">${result.Link || result.url}</a>
                                     </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.snippet || "Опис відсутній"}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${result.Snippet || result.snippet || "Опис відсутній"}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">${moduleName}</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px; ${labelStyle}">${predictedLabel}</td>
                                 </tr>
                             `;
                             tableBody.append(row);
                         });
                     } else {
-                        console.error("Неправильний формат відповіді:", results);
-                        tableBody.html("<tr><td colspan='3'>Результати не знайдено або сталася помилка.</td></tr>");
+                        tableBody.html("<tr><td colspan='5'>Результати не знайдено або сталася помилка.</td></tr>");
                     }
-                })
-                .fail(err => {
-                        console.error(err);
-                        const tableBody = $("#resultsTableBody");
-                        tableBody.html("<tr><td colspan='3'>Результати не знайдено або сталася помилка.</td></tr>");
-                        alert("Помилка отримання результатів");
-                });
-        })
+                },
+                error: function (err) {
+                    console.error("Помилка отримання результатів:", err);
+                    $("#resultsTableBody").html("<tr><td colspan='5'>Результати не знайдено або сталася помилка.</td></tr>");
+                    alert("Помилка отримання результатів");
+                }
+            });
+        });
     </script>
 }

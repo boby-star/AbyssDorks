@@ -4,11 +4,16 @@ using System.Runtime.InteropServices;
 using AbyssDorks.Models;
 using AbyssDorks.Services;
 using Microsoft.AspNetCore.Mvc;
+using AbyssDorks.BayesClassifier;
+using Google.Protobuf.WellKnownTypes;
 
 namespace AbyssDorks.Controllers
 {
+    //[ApiController]
+    //[Route("[controller]")]
     public class DorkController : Controller
     {
+        private readonly ClassifierManager _classifierManager;
         private readonly ILogger<DorkController> _logger;
         private readonly JsonDataService _jsonDataService;
         private readonly TagsService _tagsService;
@@ -16,8 +21,9 @@ namespace AbyssDorks.Controllers
         private readonly SearchService _searchService;
         private readonly ValidationService _validationService;
 
-        public DorkController(ILogger<DorkController> logger, JsonDataService jsonDataService, TagsService tagsService, DorkGeneratorService dorkGeneratorService, SearchService searchService, ValidationService validationService)
+        public DorkController(ClassifierManager classifierManager, ILogger<DorkController> logger, JsonDataService jsonDataService, TagsService tagsService, DorkGeneratorService dorkGeneratorService, SearchService searchService, ValidationService validationService)
         {
+            _classifierManager = classifierManager;
             _logger = logger;
             _jsonDataService = jsonDataService;
             _tagsService = tagsService;
@@ -28,13 +34,6 @@ namespace AbyssDorks.Controllers
 
         public IActionResult Index()
         {
-            //var apiKey = HttpContext.Session.GetString("GoogleApiKey");
-            //var cx = HttpContext.Session.GetString("GoogleCx");
-
-            //if (string.IsNullOrEmpty(cx) || string.IsNullOrEmpty(apiKey))
-            //{
-            //    return RedirectToAction("SetCredentials");
-            //}
 
             var modules = new List<string>
             {
@@ -113,16 +112,44 @@ namespace AbyssDorks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ExecuteSearch(string query)
+        public async Task<IActionResult> ExecuteSearch([FromBody] List<QueryModulePair> queryModulePairs)
         {
             try
             {
-                var decodeQuery = WebUtility.UrlDecode(query);
-                Console.WriteLine($"(контролер) Запит: {query}");
-                Console.WriteLine($"(контролер) декодований запит: {decodeQuery}");
+                var allResults = new List<SearchResult>();
+                foreach (var pair in queryModulePairs)
+                {
+                    var decodeQuery = WebUtility.UrlDecode(pair.Query);
+                    Console.WriteLine($"(контролер) запит: {pair.Query} для модуля {pair.Module}");
+                    var results = await _searchService.ExecuteSearch(HttpContext, decodeQuery);
 
-                var results = await _searchService.ExecuteSearch(HttpContext, decodeQuery);
-                return Json(new { Items = results});
+                    if (results == null || !results.Any())
+                    {
+                        _logger.LogWarning($"Для запиту {pair.Query} повернулося 0 результатів, пропускаємо...");
+                        continue;
+                    }
+
+                    var classifier = _classifierManager.GetClassifier(pair.Module);
+                    foreach (var result in results)
+                    {
+                        string combinedText = _validationService.NormalizerTextForClassification(result.Title + " " + result.Url + " " + result.Snippet);
+                        var classification = await classifier.ClassifyAsync(combinedText);
+                        result.PredictedLabel = classification.PredictedLabel;
+                        result.Module = pair.Module;
+                    }
+                    allResults.AddRange(results);
+                }                
+                
+                if (allResults.Any())
+                {
+                    var sortedResults = allResults.OrderBy(r => r.PredictedLabel == "Critically" ? 0 : 1).ToList();
+                    return Json(new { Items = sortedResults });
+                }
+                else
+                {
+                    return Json(new { Items = new List<SearchResult>() });
+                }
+                
             }
             catch (Exception ex)
             {

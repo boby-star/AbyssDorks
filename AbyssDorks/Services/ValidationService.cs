@@ -50,5 +50,13 @@ namespace AbyssDorks.Services
             }
             return true;
         }
+
+        public string NormalizerTextForClassification(string input)
+        {
+            input = input.ToLower();
+            input = Regex.Replace(input, @"[^\w\s]", " ");
+            input = Regex.Replace(input, @"\s+", " ");
+            return input.Trim();
+        }
     }
 }

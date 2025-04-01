@@ -50,9 +50,6 @@ namespace AbyssDorks.Services
                     Console.WriteLine($"Отримані дані: {JsonSerializer.Serialize(googleResponse)}");
 
                     if (googleResponse == null || googleResponse.Items == null)
-                        throw new Exception("Не вдалось отримати результати пошуку");
-
-                    if (googleResponse == null || googleResponse.Items == null)
                         break;
 
                     allResults.AddRange(googleResponse.Items.Select(item => new SearchResult

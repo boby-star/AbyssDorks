@@ -41,4 +41,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BayesClassifier\LearningData\" />
+  </ItemGroup>
 </Project>

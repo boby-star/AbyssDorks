@@ -1,3 +1,4 @@
+using AbyssDorks.BayesClassifier;
 using AbyssDorks.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,7 @@ builder.Services.AddSingleton<DorkGeneratorService>();
 builder.Services.AddSingleton<TagsService>();
 builder.Services.AddSingleton<ValidationService>();
 builder.Services.AddSingleton<SearchService>();
+builder.Services.AddSingleton<ClassifierManager>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
